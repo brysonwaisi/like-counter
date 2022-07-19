@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
 
-function App() {
+const LikeButtonCompoent = () => {
+  const [like, setLike] = useState(100),
+    [isLike, setIsLike] = useState(false),
+    onLikeButtonClick = () => {
+      setLike(like + (isLike ? -1 : 1));
+      setIsLike(!isLike);
+    };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button
+        className={"like-button " + (isLike ? "liked" : "")}
+        onClick={onLikeButtonClick}
+      >
+       <span 
+            className='likes-counter'> {`Like | ${like}`}
+       </span>
+      </button>
+    </>
   );
-}
+};
 
-export default App;
+export default LikeButtonCompoent;
